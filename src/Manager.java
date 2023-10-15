@@ -54,7 +54,7 @@ public class Manager {
     }
 
     public void createRandom() {
-        Random random = new Random(1);
+        Random random = new Random();
         List<Integer> list = new ArrayList<>();
         for (int i = 0; i < random.nextInt(10); i++)
             list.add(random.nextInt(1000));
@@ -66,10 +66,10 @@ public class Manager {
         int first = scanner.nextInt();
         System.out.print("Верхнее значение: ");
         int second = scanner.nextInt();
-        Random random = new Random(first);
+        Random random = new Random();
         List<Integer> list = new ArrayList<>();
         for (int i = 0; i < 10; i++)
-            list.add(random.nextInt(second));
+            list.add(random.nextInt(second - first) + first);
         System.out.print("Введите имя файла: ");
         String file = scanner.next();
         worker.loadToFile(file, list.toString());
@@ -122,15 +122,24 @@ public class Manager {
 
     public void checkSum() {
         List<Integer> list = worker.createList();
+        System.out.print("Введено: ");
         System.out.println(list);
         List<Integer> list2 = worker.createList();
+        System.out.print("Введено: ");
         System.out.println(list2);
         int sum = worker.sum(list);
         int sum2 = worker.sum(list2);
-        if (sum > sum2)
+        System.out.println("========================");
+        System.out.print("Вектор: ");
+        if (sum > sum2) {
             System.out.println(list);
-        else
+            System.out.print("Сумма: ");
+            System.out.println(sum);
+        } else {
             System.out.println(list2);
+            System.out.print("Сумма: ");
+            System.out.println(sum2);
+        }
     }
 
 }
